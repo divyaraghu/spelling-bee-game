@@ -277,13 +277,16 @@ h1{
         }
       }
 
-    function hideAll(){
-        var wordButtons = document.getElementsByClassName("word-button");
-        for(i=0; i<wordButtons.length; i++){
-            wordButtons[i].setAttribute('orig',wordButtons[i].innerText);
-            wordButtons[i].innerText = "Word"+i+1;
+      function hideAll(){
+            var wordButtons = document.getElementsByClassName("word-button");
+            for(i=0; i<wordButtons.length; i++){
+                if(!wordButtons[i].innerText.startsWith('Word')){
+                  wordButtons[i].setAttribute('orig',wordButtons[i].innerText);
+                  var count = i+1;
+                  wordButtons[i].innerText = "Word"+count;
+                }
+            }
         }
-    }
     function showAll(){
         var wordButtons = document.getElementsByClassName("word-button");
         for(i=0; i<wordButtons.length; i++){
