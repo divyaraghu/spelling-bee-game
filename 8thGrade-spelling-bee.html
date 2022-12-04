@@ -219,6 +219,11 @@
       background-color: #298e46;
       box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
     }
+
+    .audio-files{
+      display: none;
+    }
+
     
     </style>
     
@@ -283,8 +288,11 @@
         function hideAll(){
             var wordButtons = document.getElementsByClassName("word-button");
             for(i=0; i<wordButtons.length; i++){
-                wordButtons[i].setAttribute('orig',wordButtons[i].innerText);
-                wordButtons[i].innerText = "Word"+i+1;
+                if(!wordButtons[i].innerText.startsWith('Word')){
+                  wordButtons[i].setAttribute('orig',wordButtons[i].innerText);
+                  var count = i+1;
+                  wordButtons[i].innerText = "Word"+count;
+                }
             }
         }
         function showAll(){
@@ -308,6 +316,7 @@
     </script>
 </head>
 <body>
+  <div class="audio-files">
   <audio id="correctAnsSound" controls>
     <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c201b79c03.mp3?filename=correct-6033.mp3" type="audio/mpeg">
      Your browser does not support the audio element.
@@ -317,7 +326,7 @@
      <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_39b5f497b1.mp3?filename=wrong-buzzer-6268.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
- 
+  </div>
 
 <h1>Spelling Bee Champian - 8th Grade Word List</h1>
 <div class="display-buttons">
