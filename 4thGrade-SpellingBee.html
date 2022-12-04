@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+<title>Spelling Bee Champian</title>
+<style>
+   /* CSS */
+.word-button {
+  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.word-group{
+  display: block;
+}
+input{
+  border-radius: 6px;
+    height: 3.5rem;
+  width:250px;
+}
+button.word-button{
+    width:250px;
+    margin:10px;
+}
+button.check-word{
+    height:4rem;
+    margin:10px;
+    font-size:16px;
+}
+h1{
+    text-align: center;
+}
+.word-button:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+}
+.display-buttons{
+    display: block;
+    text-align: center;
+   
+}
+
+
+
+/* CSS */
+.button-77 {
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: Eina01,sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .button-77 {
+    padding: 19px 32px;
+  }
+}
+
+.button-77:before,
+.button-77:after {
+  border-radius: 80px;
+}
+
+.button-77:before {
+  background-color: rgba(249, 58, 19, .32);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.button-77:after {
+  background-color: initial;
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1;
+}
+
+.button-77:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+}
+
+.button-77:active:not(:disabled) {
+  color: #ccc;
+}
+
+.button-77:active:not(:disabled):after {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+
+.button-77:disabled {
+  cursor: default;
+  opacity: .24;
+}
+
+@media (min-width: 768px) {
+  .word-button {
+    padding: 0 2.6rem;
+  }
+}
+/* CSS */
+.button-3 {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<script>
+  $(document).ready(function(){
+    $(".word-button").click(function(){
+      sayIt($(this));
+    });
+
+    $('.word-button').bind('tap',function() { 
+      sayIt($(this)); 
+    });
+    $('.check-word').click(function(){
+        checkIt($(this));
+    });
+    $('.check-word').bind('tap',function() { 
+      sayIt($(this)); 
+    });
+
+  });
+
+ 
+
+    function sayIt(elem) {
+        var e = elem[0];
+        if(e.getAttribute('orig')){
+          voice(e.getAttribute('orig'));
+        }else{
+          voice(e.innerText);
+        }
+    }
+
+    function voice(text){
+      var msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      window.speechSynthesis.speak(msg);
+    }
+
+    function checkIt(elem){
+        var word = elem.parent().children()[0].getAttribute('orig');
+        if(null == word || word.length == 0){
+          word = elem.parent().children()[0].innerText;
+        }
+        var answer = elem.parent().children()[1].value;
+        if(answer.length == 0){
+          playWrongSound();
+          alert("Type your answer!!!");
+        }else{
+          if(answer.toLowerCase() === word.toLowerCase()){
+            playCorrectSound();
+            alert("Congrats! You got the right answer!");
+          }else{
+            playWrongSound();
+            alert("Sorry! better luck next time! Correct spelling is " + word);
+          }
+        }
+      }
+
+    function hideAll(){
+        var wordButtons = document.getElementsByClassName("word-button");
+        for(i=0; i<wordButtons.length; i++){
+            wordButtons[i].setAttribute('orig',wordButtons[i].innerText);
+            wordButtons[i].innerText = "Word"+i+1;
+        }
+    }
+    function showAll(){
+        var wordButtons = document.getElementsByClassName("word-button");
+        for(i=0; i<wordButtons.length; i++){
+            if(wordButtons[i].getAttribute('orig'))
+            wordButtons[i].innerText = wordButtons[i].getAttribute('orig');
+        }
+    }
+
+    function playCorrectSound() {
+      var x = document.getElementById("correctAnsSound");
+      x.play();
+    }
+
+    function playWrongSound() {
+      var x = document.getElementById("wrongAnsSound");
+      x.play();
+    }
+</script>
+</head>
+<body>
+
+  <audio id="correctAnsSound" controls>
+    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c201b79c03.mp3?filename=correct-6033.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="wrongAnsSound" controls>
+    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_39b5f497b1.mp3?filename=wrong-buzzer-6268.mp3" type="audio/mpeg">
+     Your browser does not support the audio element.
+   </audio>
+
+
+<h1>Spelling Bee Champian - 4th Grade Word List for Deeksha</h1>
+<div class="display-buttons">
+    <button class="hide-all button-77" onclick="hideAll()" type="button">Quiz Mode </button> 
+    <button class="show-all button-77" onclick="showAll()" type="button">Study Mode</button>
+</div>
+<br/>
+<div class="word-group"> <button class="word-button"   type='button'>comic</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>glide</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>railings</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>hummingbird</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>slippery</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>ebb</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>everlasting</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>upbeat</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>waist</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>whizzed</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>spellbound</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>bossiness</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>skidded</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>beginning</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>smirk</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>people</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>awesome</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>spading</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>pitch-black</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>hauling</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>hitched</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>chase</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>snooty</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>trout</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>landline</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>weave</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>former</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>blotch</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>overseas</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>inkling</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>slouch</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>discarded</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>saints</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>Wi-Fi</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>sifting</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>jinx</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>nimble</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>tingle</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>doodled</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>innings</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>joggled</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>sparrow</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>slivers</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>cottonwood</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>easily</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>sheepish</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>interesting</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>foster</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+<div class="word-group"> <button class="word-button"   type='button'>rental</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
+
+
+</body>
+</html>
