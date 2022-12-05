@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,7 +220,22 @@
     .audio-files{
       display: none;
     }
+    input{
+      font-size:20px;
+      width:175px;
+    }
+    .check-word{
+      display:none;
+    }
 
+    .scoreBoard {
+      font-size: 30px;
+      font-weight: bolder;
+      background: darkorange;
+      width: 250px;
+      margin: 10px;
+      padding:20px;
+    }
     
     </style>
     
@@ -232,6 +244,9 @@
     
     <script>
       $(document).ready(function(){
+        var words = "effigy,vestments,Lithuania,Azores,tankard,starboard,maneuverable,lurid,blasphemous,chemotherapy,proscribed,emigrate,Zimbabwe,impudence,oncologist,inaudible,telenovelas,mullioned,benighted,philology,prophetically,cul-de-sac,pell-mell,Sanskrit,parathas,rejoinder,preternaturally,canid,forsooth,masa,Leander,pneumonia,subservient,mercenary,trey,urchins,xylem,fumatorium,deign,catastrophe,infrared,mausoleum,incontrovertible,assimilation,conjugate,commemoration,conifers,Beijing,architrave,andromeda,Spandau,estampies,Penelope,roulette,lustrum,Arcturus,hobbledehoy,miscellaneous,sackbuts,eurythmics,caparisoned,doppelganger,tilapia,misericords,Camelot,aye-aye,Piraeus,misericordes,trilby,Vesuvian,thurible,cuirass,hurdy-gurdy,kirpan,cirrhosis,nom de plume,Tamil,nares,cortege,athenaeum,Jicarilla,saltarellos,chachalacas,Alhambra,biryani,Bangalore,undine,garderobe,Andalusian,Gaels,Ayurvedic,chatelaine,urad,kumkum,Sikhism,cirque,marguerite,clerisy,carillon,fado,chiasmus";
+        generateWords(words);
+        var score = 0;
         $(".word-button").click(function(){
           sayIt($(this));
         });
@@ -248,6 +263,11 @@
     
       });
     
+      function generateWords(words){
+        var wordList = words.split(",");
+        for(var i=0; i< wordList.length; i++)
+          $('#container').append('<div class="word-group"> <button class="word-button" score="0">' + wordList[i] + '</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>');
+      } 
      
     
         function sayIt(elem) {
@@ -276,8 +296,10 @@
               alert("Type your answer!!!");
             }else{
               if(answer.toLowerCase() === word.toLowerCase()){
+                incrementScore(elem.parent().children()[0]);
                 playCorrectSound();
                 alert("Congrats! You got the right answer!");
+                updateTotalScore();
               }else{
                 playWrongSound();
                 alert("Sorry! better luck next time! Correct spelling is " + word);
@@ -294,6 +316,7 @@
                   wordButtons[i].innerText = "Word"+count;
                 }
             }
+            $('.check-word').show();
         }
         function showAll(){
             var wordButtons = document.getElementsByClassName("word-button");
@@ -301,7 +324,24 @@
                 if(wordButtons[i].getAttribute('orig'))
                 wordButtons[i].innerText = wordButtons[i].getAttribute('orig');
             }
+            $('.check-word').hide();
         }
+
+        function updateTotalScore(){
+          var wordButtons = document.getElementsByClassName("word-button");
+          var totalScore = 0;
+            for(i=0; i<wordButtons.length; i++){
+              var score = wordButtons[i].getAttribute('score');
+              totalScore = parseInt(totalScore) + parseInt(score);
+            }
+            $("#totalScore")[0].innerText = totalScore;
+         }
+
+         function incrementScore(elem){
+          if(elem.getAttribute('score') == 0){
+             elem.setAttribute('score',1);
+          }
+         }
     
         
     function playCorrectSound() {
@@ -333,109 +373,13 @@
     <button class="hide-all button-77" onclick="hideAll()" type="button">Quiz Mode </button>
     <button class="show-all button-77" onclick="showAll()" type="button">Study Mode</button>
 </div>
+<div class="scoreBoard">
+  <span> Total Score </span>
+  <span id="totalScore"></span>
+</div>
 <br/>
-<div class="word-group"> <button class="word-button">effigy</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">vestments</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Lithuania</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Azores</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">tankard</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">starboard</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">maneuverable</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">lurid</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">blasphemous</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">chemotherapy</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">proscribed</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">emigrate</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Zimbabwe</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">impudence</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">oncologist</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">inaudible</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">telenovelas</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">mullioned</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">benighted</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">philology</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">prophetically</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">cul-de-sac</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">pell-mell</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Sanskrit</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">parathas</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">rejoinder</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">preternaturally</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">canid</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">forsooth</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">masa</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Leander</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">pneumonia</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">subservient</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">mercenary</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">trey</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">urchins</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">xylem</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">fumatorium</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">deign</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">catastrophe</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">infrared</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">mausoleum</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">incontrovertible</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">assimilation</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">conjugate</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">commemoration</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">conifers</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Beijing</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">architrave</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">andromeda</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Spandau</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">estampies</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Penelope</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">roulette</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">lustrum</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Arcturus</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">hobbledehoy</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">miscellaneous</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">sackbuts</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">eurythmics</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">caparisoned</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">doppelganger</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">tilapia</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">misericords</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Camelot</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">aye-aye</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Piraeus</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">misericordes</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">trilby</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Vesuvian</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">thurible</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">cuirass</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">hurdy-gurdy</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">kirpan</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">cirrhosis</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">nom de plume</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Tamil</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">nares</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">cortege</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">athenaeum</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Jicarilla</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">saltarellos</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">chachalacas</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Alhambra</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">biryani</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Bangalore</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">undine</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">garderobe</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Andalusian</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Gaels</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Ayurvedic</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">chatelaine</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">urad</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">kumkum</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">Sikhism</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">cirque</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">marguerite</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">clerisy</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">carillon</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">fado</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
-<div class="word-group"> <button class="word-button">chiasmus</button> <input type="text" /> <button class="check-word button-3"> Check </button></button></div>
 
+<div id="container"> </div>
 
 </body>
 </html>
