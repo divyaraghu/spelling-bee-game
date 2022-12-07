@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spelling Bee Spinning Wheel - 4th Grade</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            }
+
+        body{
+            font-family: "Open Sans";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(60, 60, 242);
+            background: linear-gradient(90deg, rgba(60, 60, 242, 1) 0%, rgba(98, 245, 230, 1) 52%, rgba(60, 60, 242, 1) 100%);
+            background-size: cover;
+        }
+        .mainbox{
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        .mainbox:after{
+            position: absolute;
+            content: '';
+            width: 32px;
+            height: 32px;
+            background: url('arrow-left.png') no-repeat;
+            background-size: 32px;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .box{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            font-weight: bold;
+            border-radius: 50%;
+            border: 10px solid #fff;
+            overflow: hidden;
+            transition: all ease 5s;
+        }
+        span{
+        width: 50%;
+        height: 50%;
+        display: inline-block;
+        position: absolute;
+        }
+        .span1{
+        clip-path: polygon(0 92%, 100% 50%, 0 8%);
+        background-color: #fffb00;
+        top: 120px;
+        left: 0;
+        }
+        .span2{
+        clip-path: polygon(100% 92%, 0 50%, 100% 8%);
+        background-color: #ff4fa1;
+        top: 120px;
+        right: 0;
+        }
+        .span3{
+        clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
+        background-color: #ffaa00;
+        bottom: 0;
+        left: 120px;
+        }
+        .span4{
+        clip-path: polygon(50% 100%, 92% 0, 8% 0);
+        background-color: #22ff00;
+        top: 0;
+        left: 120px;
+        }
+        .box1 .span3 b{
+        transform: translate(-50%, -50%) rotate(-270deg);
+        }
+    .box1 .span1 b,
+    .box2 .span1 b{
+    transform: translate(-50%, -50%) rotate(185deg);
+    }
+    .box2 .span3 b{
+    transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .box1 .span4 b,
+    .box2 .span4 b{
+    transform: translate(-50%, -50%) rotate(-85deg);
+    }
+
+    span b{
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    }
+
+    .box2{
+    width: 100%;
+    height: 100%;
+    transform: rotate(-135deg);
+    }
+    .spin{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background-color: #001aff;
+  color: #fff;
+  box-shadow: 0 5px 20px #000;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+}
+.spin:active{
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+}
+
+.mainbox.animate:after{
+  animation: animateArrow 0.7s ease infinite;
+}
+@keyframes animateArrow{
+  50%{
+    right: -40px;
+  }
+}
+    </style>
+
+    <script>
+        
+
+        function rotateFunction(){
+            var min = 1000;
+            var max = 3000;
+            var deg = Math.floor(Math.random() * (max - min)) + min;
+            document.getElementById('box').style.transform = "rotate("+deg+"deg)";
+            var element = document.getElementById('mainbox');
+            element.classList.remove('animate');
+            setTimeout( function() { generateRandomWord(); }, 3000);
+        }
+
+        function voice(text){
+          var msg = new SpeechSynthesisUtterance();
+          msg.text = text;
+          window.speechSynthesis.speak(msg);
+        }
+
+        function generateRandomWord(){
+            var words = "slouch,discarded,saints,Wi-Fi,sifting,jinx,nimble,tingle,doodled,innings,joggled,sparrow,slivers,cottonwood,easily,sheepish,interesting,foster,rental,smirk,people,awesome,spading,pitch-black,hauling,hitched,chase,snooty,trout,landline,weave,former,blotch,overseas,inkling,comic,glide,railings,hummingbird,slippery,ebb,everlasting,upbeat,waist,whizzed,spellbound,bossiness,skidded,beginning";
+            var wordArray = words.split(',');
+            var index = Math.floor(Math.random() * (wordArray.length - 0 + 1) + 0);
+            var randomWord = wordArray[index];
+            voice(randomWord);
+        }
+
+
+    </script>
+  </head>
+  <body> 
+  <div id="mainbox" class="mainbox">
+    <div id="box" class="box">
+      <div class="box1">
+        <span class="span1"><b>Deeksha</b></span>
+        <span class="span2"><b>Shriya</b></span>
+        <span class="span3"><b>School</b></span>
+        <span class="span4"><b>Spelling Bee</b></span>
+      </div>
+      <div class="box2">
+        <span class="span1"><b>Champion</b></span>
+        <span class="span2"><b>Awesome</b></span>
+        <span class="span3"><b>Girl Power</b></span>
+        <span class="span4"><b>You can win!</b></span>
+      </div>
+    </div> 
+    <button class="spin" onclick="rotateFunction()">SPIN</button>
+  </div>
+  
+  </body>
+</html>
